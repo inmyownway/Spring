@@ -1,7 +1,13 @@
 package com.example.validation.dto;
 
+import com.example.validation.annotation.YearMonth;
+
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class User {
     private String name;
@@ -10,6 +16,9 @@ public class User {
     private int age;
     @Pattern(regexp = "^\\d{2,3}-\\d{3,4}-\\d{4}$",message = "핸드폰 번호 양식과 맞지 않습니다.xxx-xxxx-xxxx") // 정규식
     private String phoneNumber;
+
+    @YearMonth
+    private String reqYearMonth; // yyyymm 으로 보내줘
 
     public String getName() {
         return name;
@@ -43,6 +52,16 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getReqYearMonth() {
+        return reqYearMonth;
+    }
+
+    public void setReqYearMonth(String reqYearMonth) {
+        this.reqYearMonth = reqYearMonth;
+    }
+
+
+
     @Override
     public String toString() {
         return "User{" +
@@ -50,6 +69,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", reqYearMonth='" + reqYearMonth + '\'' +
                 '}';
     }
 }
